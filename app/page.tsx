@@ -54,7 +54,7 @@ export default function Home() {
 
       <main className="min-h-screen bg-black">
         {/* Hero Section with 3D Gallery */}
-        <section className="relative h-[80vh] pt-16 overflow-hidden mb-20">
+        <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] pt-14 sm:pt-16 overflow-hidden mb-12 sm:mb-16 md:mb-20">
           <InfiniteGallery
             images={sampleImages}
             speed={1.2}
@@ -64,9 +64,10 @@ export default function Home() {
             className="h-full w-full rounded-lg"
             onScrollVelocityChange={setScrollVelocity}
           />
-          <div className="h-full inset-0 pointer-events-none absolute flex items-center justify-center text-center px-3 mix-blend-exclusion text-white">
-            <h1 className="font-serif text-5xl md:text-7xl tracking-tight whitespace-nowrap">
-              <span className="italic">We build;</span> therefore we are
+          <div className="h-full inset-0 pointer-events-none absolute flex items-center justify-center text-center px-4 sm:px-6 mix-blend-exclusion text-white">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-tight">
+              <span className="italic">We build;</span><br className="sm:hidden" />
+              <span className="sm:inline"> therefore we are</span>
             </h1>
           </div>
         </section>

@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist_Mono, Instrument_Serif } from "next/font/google"
 import "./globals.css"
 
@@ -25,6 +25,11 @@ export const metadata: Metadata = {
     shortcut: '/3433f2f3-1f5e-400c-97cf-f3d61b73a009.jpg',
     apple: '/3433f2f3-1f5e-400c-97cf-f3d61b73a009.jpg',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 }
 
 export default function RootLayout({

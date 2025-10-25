@@ -553,16 +553,16 @@ function FallbackGallery({ images }: { images: ImageItem[] }) {
 
 	return (
 		<div className="flex flex-col items-center justify-center h-full bg-gray-100 p-4">
-			<p className="text-gray-600 mb-4">
+			<p className="text-gray-600 mb-4 text-sm sm:text-base">
 				WebGL not supported. Showing image list:
 			</p>
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-h-96 overflow-y-auto">
+			<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 max-h-96 overflow-y-auto">
 				{normalizedImages.map((img, i) => (
 					<img
 						key={i}
 						src={img.src || '/placeholder.svg'}
 						alt={img.alt}
-						className="w-full h-32 object-cover rounded"
+						className="w-full h-24 sm:h-32 object-cover rounded"
 					/>
 				))}
 			</div>
