@@ -9,6 +9,59 @@ import { useState } from "react"
 
 export default function Home() {
   const [scrollVelocity, setScrollVelocity] = useState(0)
+  
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Plutas Lab",
+    "description": "An AI experimental lab by developer friends in Bangalore, exploring repeatable business models and solving real-world problems through innovation and collaboration.",
+    "url": "https://plutaslab.com",
+    "logo": "https://plutaslab.com/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Bangalore",
+      "addressCountry": "India"
+    },
+    "sameAs": [
+      "https://twitter.com/plutaslab",
+      "https://github.com/plutaslab"
+    ],
+    "foundingDate": "2024",
+    "founders": [
+      {
+        "@type": "Person",
+        "name": "Plutas Lab Team"
+      }
+    ],
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Machine Learning",
+      "Software Development",
+      "Innovation",
+      "Tech Events"
+    ],
+    "event": {
+      "@type": "Event",
+      "name": "Builders Night",
+      "description": "Signature event where selected developers come together for an intensive, immersive building experience.",
+      "eventAttendanceMode": "OfflineEventAttendanceMode",
+      "eventStatus": "EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Bangalore",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bangalore",
+          "addressCountry": "India"
+        }
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "Plutas Lab"
+      }
+    }
+  }
+  
   const sampleImages = [
     {
       src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/52d114f9-e0cc-4890-bb82-134e4b87488c-Jmr1hWwcysPsQfrVdU1gGQ0JJMcoYu.jpg",
@@ -50,11 +103,15 @@ export default function Home() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <Header />
 
-      <main className="min-h-screen bg-black">
+      <main className="min-h-screen bg-black" role="main">
         {/* Hero Section with 3D Gallery */}
-        <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] pt-14 sm:pt-16 overflow-hidden mb-12 sm:mb-16 md:mb-20">
+        <section className="relative h-[60vh] sm:h-[70vh] md:h-[80vh] pt-14 sm:pt-16 overflow-hidden mb-12 sm:mb-16 md:mb-20" aria-label="Hero section with interactive gallery">
           <InfiniteGallery
             images={sampleImages}
             speed={1.2}
@@ -65,7 +122,7 @@ export default function Home() {
             onScrollVelocityChange={setScrollVelocity}
           />
           <div className="h-full inset-0 pointer-events-none absolute flex items-center justify-center text-center px-4 sm:px-6 mix-blend-exclusion text-white">
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-tight">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight leading-tight animate-fade-in-up animate-delay-300">
               <span className="italic">We build;</span><br className="sm:hidden" />
               <span className="sm:inline"> therefore we are</span>
             </h1>

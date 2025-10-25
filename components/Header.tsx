@@ -22,18 +22,18 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out animate-slide-in-down ${
         isScrolled
-          ? "bg-black/90 backdrop-blur-xl border-b border-white/10 rounded-b-2xl mx-2 sm:mx-4 mt-2 left-2 right-2 sm:left-4 sm:right-4"
+          ? "bg-black/90 backdrop-blur-xl border-b border-white/10 rounded-b-2xl mx-2 sm:mx-4 mt-2 left-2 right-2 sm:left-4 sm:right-4 shadow-2xl"
           : "bg-black/20 backdrop-blur-md border-b border-white/5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover-scale">
             <div className="flex items-center">
-              <span className="font-serif text-xl sm:text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+              <span className="font-serif text-xl sm:text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-fade-in-left">
                 Plutas Lab
               </span>
             </div>

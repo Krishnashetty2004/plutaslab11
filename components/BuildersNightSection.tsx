@@ -1,12 +1,12 @@
 export default function BuildersNightSection() {
   return (
-    <section className="min-h-screen bg-black px-4 sm:px-6 md:px-12 py-16 sm:py-20 md:py-32">
+    <section className="min-h-screen bg-black px-4 sm:px-6 md:px-12 py-16 sm:py-20 md:py-32" id="builders-night" aria-labelledby="builders-night-heading">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight">Builders Night</h2>
+        <h2 id="builders-night-heading" className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-8 sm:mb-12 tracking-tight leading-tight animate-fade-in-up">Builders Night</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
           {/* Event Details */}
-          <div className="space-y-6 sm:space-y-8">
+          <article className="space-y-6 sm:space-y-8 animate-fade-in-left">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">What is Builders Night?</h3>
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -16,43 +16,43 @@ export default function BuildersNightSection() {
               </p>
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-xl sm:text-2xl font-bold text-white">Event Details</h3>
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="text-white font-bold text-lg sm:text-xl mt-1">•</div>
-                  <div>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">Event Details</h3>
+              <dl className="space-y-3">
+                <div className="flex items-start gap-3 sm:gap-4 hover-lift">
+                  <dt className="text-white font-bold text-lg sm:text-xl mt-1">•</dt>
+                  <dd>
                     <p className="text-white font-semibold text-sm sm:text-base">Frequency</p>
                     <p className="text-gray-400 text-sm sm:text-base">Twice a month</p>
-                  </div>
+                  </dd>
                 </div>
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="text-white font-bold text-lg sm:text-xl mt-1">•</div>
-                  <div>
+                <div className="flex items-start gap-3 sm:gap-4 hover-lift">
+                  <dt className="text-white font-bold text-lg sm:text-xl mt-1">•</dt>
+                  <dd>
                     <p className="text-white font-semibold text-sm sm:text-base">Duration</p>
                     <p className="text-gray-400 text-sm sm:text-base">12 to 24 hour lockdown</p>
-                  </div>
+                  </dd>
                 </div>
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="text-white font-bold text-lg sm:text-xl mt-1">•</div>
-                  <div>
+                <div className="flex items-start gap-3 sm:gap-4 hover-lift">
+                  <dt className="text-white font-bold text-lg sm:text-xl mt-1">•</dt>
+                  <dd>
                     <p className="text-white font-semibold text-sm sm:text-base">Participation</p>
                     <p className="text-gray-400 text-sm sm:text-base">Selected developers only (application-based)</p>
-                  </div>
+                  </dd>
                 </div>
-                <div className="flex items-start gap-3 sm:gap-4">
-                  <div className="text-white font-bold text-lg sm:text-xl mt-1">•</div>
-                  <div>
+                <div className="flex items-start gap-3 sm:gap-4 hover-lift">
+                  <dt className="text-white font-bold text-lg sm:text-xl mt-1">•</dt>
+                  <dd>
                     <p className="text-white font-semibold text-sm sm:text-base">Focus</p>
                     <p className="text-gray-400 text-sm sm:text-base">Build, experiment, and have fun</p>
-                  </div>
+                  </dd>
                 </div>
-              </div>
+              </dl>
             </div>
-          </div>
+          </article>
 
           {/* Why Join */}
-          <div className="space-y-6 sm:space-y-8">
+          <article className="space-y-6 sm:space-y-8 animate-fade-in-right">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Why Join?</h3>
               <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
@@ -63,34 +63,35 @@ export default function BuildersNightSection() {
             </div>
 
             <div className="space-y-3 sm:space-y-4">
-              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 hover-lift hover-glow">
                 <h4 className="text-white font-bold mb-2 text-sm sm:text-base">Collaborate</h4>
                 <p className="text-gray-400 text-sm sm:text-base">Work alongside talented developers and innovators</p>
               </div>
-              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 hover-lift hover-glow">
                 <h4 className="text-white font-bold mb-2 text-sm sm:text-base">Experiment</h4>
                 <p className="text-gray-400 text-sm sm:text-base">Try new ideas, technologies, and approaches</p>
               </div>
-              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 hover-lift hover-glow">
                 <h4 className="text-white font-bold mb-2 text-sm sm:text-base">Create</h4>
                 <p className="text-gray-400 text-sm sm:text-base">Build something meaningful in an intensive sprint</p>
               </div>
-              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6">
+              <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-4 sm:p-6 hover-lift hover-glow">
                 <h4 className="text-white font-bold mb-2 text-sm sm:text-base">Connect</h4>
                 <p className="text-gray-400 text-sm sm:text-base">Network with the Plutas Lab community</p>
               </div>
             </div>
-          </div>
+          </article>
         </div>
 
         {/* CTA */}
-        <div className="mt-12 sm:mt-16 text-center">
+        <div className="mt-12 sm:mt-16 text-center animate-fade-in-up animate-delay-500">
           <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">Interested in joining our next Builders Night?</p>
           <a 
             href="https://docs.google.com/forms/d/e/1FAIpQLSdH2mE3tW21VoEdtBGTKMRv1eEWUV1s_gVj9tlzvU1pgAPTQw/viewform"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-colors inline-block text-sm sm:text-base"
+            className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-colors inline-block text-sm sm:text-base hover-scale animate-pulse"
+            aria-label="Apply for Builders Night event"
           >
             Apply Now
           </a>
