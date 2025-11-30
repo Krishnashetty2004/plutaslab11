@@ -54,9 +54,7 @@ export default function Header() {
 
           {/* Desktop CTA Button */}
           <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdH2mE3tW21VoEdtBGTKMRv1eEWUV1s_gVj9tlzvU1pgAPTQw/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/builders-night#apply"
             className="hidden sm:inline-block px-3 py-2 sm:px-4 bg-white hover:bg-gray-200 text-black text-xs sm:text-sm font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-white/50"
           >
             Apply Now
@@ -99,9 +97,7 @@ export default function Header() {
               Contact
             </Link>
             <a 
-              href="https://docs.google.com/forms/d/e/1FAIpQLSdH2mE3tW21VoEdtBGTKMRv1eEWUV1s_gVj9tlzvU1pgAPTQw/viewform"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/builders-night#apply"
               className="block bg-white hover:bg-gray-200 text-black text-sm font-medium rounded-xl transition-colors py-3 px-4 text-center mt-4"
               onClick={() => setIsMobileMenuOpen(false)}
             >

@@ -67,23 +67,22 @@ export default function BuildersNightPage() {
               </ul>
             </section>
 
-            <section className="bg-black border border-white/10 rounded-2xl p-8">
+            <section id="apply" className="bg-black border border-white/10 rounded-2xl p-8">
               <h2 className="text-2xl font-bold mb-4 text-white">Ready to Join?</h2>
               <p className="text-white mb-6">
                 Apply now to be part of the next Builders Night and join a community of innovative developers.
               </p>
-              <div className="overflow-hidden rounded-lg">
-                <iframe 
-                  src="https://docs.google.com/forms/d/e/1FAIpQLSdH2mE3tW21VoEdtBGTKMRv1eEWUV1s_gVj9tlzvU1pgAPTQw/viewform?embedded=true" 
-                  width="100%" 
-                  height="1200" 
-                  frameBorder="0" 
-                  marginHeight={0} 
-                  marginWidth={0}
-                  className="bg-white"
-                >
-                  Loading…
-                </iframe>
+              <div className="flex justify-center">
+                <iframe
+                  src="https://luma.com/embed/event/evt-asbjR8EJaApUlZ2/simple"
+                  width="600"
+                  height="450"
+                  frameBorder="0"
+                  style={{ border: "1px solid #bfcbda88", borderRadius: "4px" }}
+                  allow="fullscreen; payment"
+                  aria-hidden="false"
+                  tabIndex={0}
+                />
               </div>
             </section>
           </div>

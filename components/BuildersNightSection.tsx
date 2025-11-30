@@ -87,9 +87,7 @@ export default function BuildersNightSection() {
         <div className="mt-12 sm:mt-16 text-center animate-fade-in-up animate-delay-500">
           <p className="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">Interested in joining our next Builders Night?</p>
           <a 
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdH2mE3tW21VoEdtBGTKMRv1eEWUV1s_gVj9tlzvU1pgAPTQw/viewform"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/builders-night#apply"
             className="bg-white hover:bg-gray-200 text-black font-bold py-3 px-6 sm:px-8 rounded-lg transition-colors inline-block text-sm sm:text-base hover-scale animate-pulse"
             aria-label="Apply for Builders Night event"
           >
