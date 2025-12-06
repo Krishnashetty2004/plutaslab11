@@ -1,18 +1,18 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Geist_Mono, Instrument_Serif } from "next/font/google"
+import { Inter, Playfair_Display } from "next/font/google"
 import "./globals.css"
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 })
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: "400",
-  style: ["italic", "normal"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 })
 
 export const metadata: Metadata = {
@@ -106,7 +106,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistMono.variable} ${instrumentSerif.variable} antialiased`} suppressHydrationWarning={true}>{children}</body>
+      <body className={`${inter.variable} ${playfairDisplay.variable} antialiased`} suppressHydrationWarning={true}>{children}</body>
     </html>
   )
 }

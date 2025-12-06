@@ -47,6 +47,9 @@ export default function Header() {
             <Link href="/builders-night" className="text-sm text-gray-300 hover:text-white transition-colors">
               Builders Night
             </Link>
+            <Link href="/micro-grants" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Micro Grants
+            </Link>
             <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition-colors">
               Contact
             </Link>
@@ -73,7 +76,7 @@ export default function Header() {
         </div>
 
         {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className="py-4 space-y-4 border-t border-white/10">
             <Link 
               href="/about" 
@@ -88,6 +91,13 @@ export default function Header() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Builders Night
+            </Link>
+            <Link 
+              href="/micro-grants" 
+              className="block text-sm text-gray-300 hover:text-white transition-colors py-2"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Micro Grants
             </Link>
             <Link 
               href="/contact" 

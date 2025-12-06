@@ -7,11 +7,11 @@ export default function BuildersNightPage() {
       <Header />
       <main className="pt-24 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-bold mb-8 text-white">Builders Night</h1>
+          <h1 className="text-5xl font-bold mb-8 text-white font-serif">Builders Night</h1>
 
           <div className="space-y-8">
             <section className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h2 className="text-3xl font-bold mb-4 text-white">What is Builders Night?</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white font-serif">What is Builders Night?</h2>
               <p className="text-slate-300 text-lg leading-relaxed">
                 Builders Night is an exclusive event held twice a month where selected developers come together for an
                 intensive 12-24 hour lockdown session. It's a time to build, experiment, collaborate, and push the
@@ -20,7 +20,7 @@ export default function BuildersNightPage() {
             </section>
 
             <section className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h2 className="text-3xl font-bold mb-4 text-white">Event Details</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white font-serif">Event Details</h2>
               <div className="space-y-4 text-slate-300">
                 <div>
                   <h3 className="text-white font-semibold mb-2">Frequency</h3>
@@ -42,7 +42,7 @@ export default function BuildersNightPage() {
             </section>
 
             <section className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              <h2 className="text-3xl font-bold mb-4 text-white">Why Join?</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white font-serif">Why Join?</h2>
               <ul className="text-slate-300 text-lg space-y-3">
                 <li className="flex items-start gap-3">
                   <span className="text-white font-bold">•</span>
@@ -68,7 +68,7 @@ export default function BuildersNightPage() {
             </section>
 
             <section id="apply" className="bg-black border border-white/10 rounded-2xl p-8">
-              <h2 className="text-2xl font-bold mb-4 text-white">Ready to Join?</h2>
+              <h2 className="text-2xl font-bold mb-4 text-white font-serif">Ready to Join?</h2>
               <p className="text-white mb-6">
                 Apply now to be part of the next Builders Night and join a community of innovative developers.
               </p>

@@ -64,17 +64,22 @@ export default function Footer() {
             <h3 className="font-semibold text-white mb-4 text-sm sm:text-base">Connect</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <a href="https://x.com/plutaslab" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Twitter
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
-                  Discord
+                <a href="https://www.linkedin.com/company/plutaslabs/" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  LinkedIn
                 </a>
               </li>
               <li>
-                <a href="#" className="text-sm text-gray-400 hover:text-white transition-colors">
+                <a href="https://www.instagram.com/plutas.labs?igsh=MWlwZmQ3NmtpMDF5cA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-sm text-gray-400 hover:text-white transition-colors">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href="mailto:founders@plutas.in" className="text-sm text-gray-400 hover:text-white transition-colors">
                   Email
                 </a>
               </li>

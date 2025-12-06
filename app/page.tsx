@@ -23,8 +23,9 @@ export default function Home() {
       "addressCountry": "India"
     },
     "sameAs": [
-      "https://twitter.com/plutaslab",
-      "https://github.com/plutaslab"
+      "https://x.com/plutaslab",
+      "https://www.linkedin.com/company/plutaslabs/",
+      "https://www.instagram.com/plutas.labs"
     ],
     "foundingDate": "2024",
     "founders": [
