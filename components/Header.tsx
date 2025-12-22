@@ -4,17 +4,7 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -22,100 +12,245 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out animate-slide-in-down ${
-        isScrolled
-          ? "bg-black/90 backdrop-blur-xl border-b border-white/10 rounded-b-2xl mx-2 sm:mx-4 mt-2 left-2 right-2 sm:left-4 sm:right-4 shadow-2xl"
-          : "bg-black/20 backdrop-blur-md border-b border-white/5"
-      }`}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 1000,
+        background: 'var(--white)',
+        borderBottom: '1px solid var(--gray-pale)',
+        padding: '1rem 2rem',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+      }}
     >
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
-        <div className="flex items-center justify-between h-14 sm:h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 hover-scale">
-            <div className="flex items-center">
-              <span className="font-serif text-xl sm:text-2xl font-bold text-white bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent animate-fade-in-left">
-                Plutas Lab
-              </span>
-            </div>
-          </Link>
+      {/* Logo */}
+      <Link
+        href="/"
+        style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: '0.85rem',
+          fontWeight: 500,
+          color: 'var(--black)',
+          textDecoration: 'none',
+          letterSpacing: '0.02em',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+        }}
+      >
+        <span style={{
+          color: 'var(--olive)',
+          fontSize: '1.2rem',
+        }}>▣</span>
+        PLUTAS<span style={{ color: 'var(--olive)' }}>_</span>LAB
+      </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link href="/about" className="text-sm text-gray-300 hover:text-white transition-colors">
+      {/* Desktop Navigation */}
+      <nav
+        style={{
+          display: 'flex',
+          gap: '2.5rem',
+          listStyle: 'none',
+        }}
+        className="hidden md:flex"
+      >
+        <Link
+          href="/#about"
+          style={{
+            fontSize: '0.8rem',
+            color: 'var(--gray)',
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+          }}
+          className="hover:text-[var(--black)]"
+        >
+          About
+        </Link>
+        <Link
+          href="/#space"
+          style={{
+            fontSize: '0.8rem',
+            color: 'var(--gray)',
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+          }}
+          className="hover:text-[var(--black)]"
+        >
+          The Space
+        </Link>
+        <Link
+          href="/#programs"
+          style={{
+            fontSize: '0.8rem',
+            color: 'var(--gray)',
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+          }}
+          className="hover:text-[var(--black)]"
+        >
+          Programs
+        </Link>
+        <Link
+          href="/micro-grants"
+          style={{
+            fontSize: '0.8rem',
+            color: 'var(--gray)',
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+          }}
+          className="hover:text-[var(--black)]"
+        >
+          Micro Grants
+        </Link>
+        <Link
+          href="/#faq"
+          style={{
+            fontSize: '0.8rem',
+            color: 'var(--gray)',
+            textDecoration: 'none',
+            transition: 'color 0.2s',
+          }}
+          className="hover:text-[var(--black)]"
+        >
+          FAQ
+        </Link>
+      </nav>
+
+      {/* Desktop CTA Button */}
+      <Link
+        href="/#apply"
+        style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: '0.75rem',
+          padding: '0.6rem 1.2rem',
+          background: 'var(--olive)',
+          color: 'var(--white)',
+          textDecoration: 'none',
+          borderRadius: '4px',
+          transition: 'all 0.2s',
+        }}
+        className="hidden sm:inline-block hover:bg-[var(--olive-light)]"
+      >
+        Join Us
+      </Link>
+
+      {/* Mobile Menu Button */}
+      <button
+        onClick={toggleMobileMenu}
+        className="md:hidden"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '40px',
+          height: '40px',
+          gap: '5px',
+          background: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+        }}
+        aria-label="Toggle mobile menu"
+      >
+        <span style={{
+          display: 'block',
+          width: '20px',
+          height: '2px',
+          background: 'var(--black)',
+          transition: 'all 0.3s',
+          transform: isMobileMenuOpen ? 'rotate(45deg) translateY(7px)' : 'none',
+        }}></span>
+        <span style={{
+          display: 'block',
+          width: '20px',
+          height: '2px',
+          background: 'var(--black)',
+          transition: 'all 0.3s',
+          opacity: isMobileMenuOpen ? 0 : 1,
+        }}></span>
+        <span style={{
+          display: 'block',
+          width: '20px',
+          height: '2px',
+          background: 'var(--black)',
+          transition: 'all 0.3s',
+          transform: isMobileMenuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none',
+        }}></span>
+      </button>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '100%',
+            left: 0,
+            right: 0,
+            background: 'var(--white)',
+            borderBottom: '1px solid var(--gray-pale)',
+            padding: '1.5rem 2rem',
+          }}
+          className="md:hidden"
+        >
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <Link
+              href="/#about"
+              style={{ fontSize: '0.9rem', color: 'var(--gray)', padding: '0.5rem 0' }}
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               About
             </Link>
-            <Link href="/builders-night" className="text-sm text-gray-300 hover:text-white transition-colors">
-              Builders Night
-            </Link>
-            <Link href="/micro-grants" className="text-sm text-gray-300 hover:text-white transition-colors">
-              Micro Grants
-            </Link>
-            <Link href="/contact" className="text-sm text-gray-300 hover:text-white transition-colors">
-              Contact
-            </Link>
-          </nav>
-
-          {/* Desktop CTA Button */}
-          <a 
-            href="/builders-night#apply"
-            className="hidden sm:inline-block px-3 py-2 sm:px-4 bg-white hover:bg-gray-200 text-black text-xs sm:text-sm font-medium rounded-xl transition-all duration-300 shadow-lg hover:shadow-white/50"
-          >
-            Apply Now
-          </a>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={toggleMobileMenu}
-            className="md:hidden flex flex-col items-center justify-center w-10 h-10 space-y-1"
-            aria-label="Toggle mobile menu"
-          >
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        <div className={`md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-          <nav className="py-4 space-y-4 border-t border-white/10">
-            <Link 
-              href="/about" 
-              className="block text-sm text-gray-300 hover:text-white transition-colors py-2"
+            <Link
+              href="/#space"
+              style={{ fontSize: '0.9rem', color: 'var(--gray)', padding: '0.5rem 0' }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              About
+              The Space
             </Link>
-            <Link 
-              href="/builders-night" 
-              className="block text-sm text-gray-300 hover:text-white transition-colors py-2"
+            <Link
+              href="/#programs"
+              style={{ fontSize: '0.9rem', color: 'var(--gray)', padding: '0.5rem 0' }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Builders Night
+              Programs
             </Link>
-            <Link 
-              href="/micro-grants" 
-              className="block text-sm text-gray-300 hover:text-white transition-colors py-2"
+            <Link
+              href="/micro-grants"
+              style={{ fontSize: '0.9rem', color: 'var(--gray)', padding: '0.5rem 0' }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Micro Grants
             </Link>
-            <Link 
-              href="/contact" 
-              className="block text-sm text-gray-300 hover:text-white transition-colors py-2"
+            <Link
+              href="/#faq"
+              style={{ fontSize: '0.9rem', color: 'var(--gray)', padding: '0.5rem 0' }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Contact
+              FAQ
             </Link>
-            <a 
-              href="/builders-night#apply"
-              className="block bg-white hover:bg-gray-200 text-black text-sm font-medium rounded-xl transition-colors py-3 px-4 text-center mt-4"
+            <Link
+              href="/#apply"
+              style={{
+                fontFamily: "'DM Mono', monospace",
+                fontSize: '0.8rem',
+                padding: '0.8rem 1.2rem',
+                background: 'var(--olive)',
+                color: 'var(--white)',
+                textDecoration: 'none',
+                borderRadius: '4px',
+                textAlign: 'center',
+                marginTop: '0.5rem',
+              }}
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Apply Now
-            </a>
+              Join Us
+            </Link>
           </nav>
         </div>
-      </div>
+      )}
     </header>
   )
 }

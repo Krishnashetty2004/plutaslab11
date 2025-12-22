@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#4A5D23">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>PLUTAS LAB | Where India's Next Startups Are Built</title>
+    <meta name="description" content="A community space in Bangalore for founders who build. We host Builders Night. We run cohorts. We do Demo Days. Companies start here.">
+    
+    <!-- Performance: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
+    <!-- Optimized font loading with font-display: swap -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"></noscript>
+    <style>
+        :root {
+            --white: #FAFAF8;
+            --black: #1a1a1a;
+            --olive: #4A5D23;
+            --olive-light: #6B7F3A;
+            --olive-pale: #E8EBD9;
+            --olive-muted: #8B9A6D;
+            --gray: #666;
+            --gray-light: #999;
+            --gray-pale: #E5E5E3;
+            --cream: #F5F5F0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--olive);
+            color: var(--white);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            font-size: 16px;
+            text-rendering: optimizeLegibility;
+        }
+
+        /* Custom Cursor - Disabled on touch devices */
+        .cursor-dot,
+        .cursor-ring {
+            display: none;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .cursor-dot {
+                width: 8px;
+                height: 8px;
+                background: var(--olive);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 10001;
+                transition: transform 0.1s;
+                will-change: transform;
+                display: block;
+            }
+
+            .cursor-ring {
+                width: 32px;
+                height: 32px;
+                border: 1px solid var(--olive);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 10000;
+                transition: all 0.15s ease-out;
+                will-change: transform;
+                display: block;
+            }
+
+            .cursor-ring.hover {
+                transform: scale(1.5);
+                border-color: var(--olive-light);
+                background: rgba(74, 93, 35, 0.1);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-pale);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--black);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-logo .lab {
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--olive);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--olive);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--olive-light);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 60px;
+        }
+
+        .hero-left {
+            padding: 6rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid var(--gray-pale);
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--olive);
+            margin-bottom: 2rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--olive-pale);
+            border-radius: 3px;
+            width: fit-content;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--olive);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--black);
+        }
+
+        .hero-title em {
+            font-style: italic;
+            color: var(--olive);
+            position: relative;
+        }
+
+        .hero-title em::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--olive-pale);
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.9rem 1.8rem;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--olive);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--olive-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 93, 35, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--black);
+            border: 1px solid var(--gray-pale);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--olive);
+            color: var(--olive);
+        }
+
+        /* Hero Right - Background Image */
+        .hero-right {
+            background: url('/_ (57).jpeg') center center no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-right::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sections */
+        .section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-dark {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-cream {
+            background: var(--cream);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--olive);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-dark .section-label {
+            color: var(--olive-light);
+        }
+
+        .section-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 2rem;
+        }
+
+        .section-dark .section-title {
+            color: var(--white);
+        }
+
+        .content-block {
+            margin-bottom: 3rem;
+        }
+
+        .content-block p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-dark .content-block p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .content-block strong {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .section-dark .content-block strong {
+            color: var(--olive-light);
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--olive);
+            padding-left: 2rem;
+            margin: 3rem 0;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--black);
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-dark .quote-block {
+            color: var(--white);
+            border-color: var(--olive-light);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .card {
+            background: var(--white);
+            border: 1px solid var(--gray-pale);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: var(--olive);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-icon {
+            font-family: 'DM Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--olive);
+            margin-bottom: 1rem;
+        }
+
+        .card h4 {
+            font-family: 'Newsreader', serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Feature List */
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .feature-list li {
+            padding: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: var(--gray);
+            border-bottom: 1px solid var(--gray-pale);
+        }
+
+        .section-dark .feature-list li {
+            color: rgba(255, 255, 255, 0.9);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--olive);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .section-dark .feature-list li::before {
+            color: var(--olive-light);
+        }
+
+        .feature-list li strong {
+            color: var(--black);
+        }
+
+        .section-dark .feature-list li strong {
+            color: var(--olive-light);
+        }
+
+        /* Table */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .info-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--gray-pale);
+            vertical-align: top;
+        }
+
+        .section-dark .info-table td {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .info-table td:first-child {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--olive);
+            width: 30%;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-dark .info-table td:first-child {
+            color: var(--olive-light);
+        }
+
+        .info-table td:last-child {
+            color: var(--gray);
+        }
+
+        .section-dark .info-table td:last-child {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--gray-pale);
+            padding: 1.5rem 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-dark .faq-item {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question {
+            font-family: 'Newsreader', serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s;
+        }
+
+        .faq-question:hover {
+            color: var(--olive);
+        }
+
+        .section-dark .faq-question:hover {
+            color: var(--olive-light);
+        }
+
+        .faq-icon {
+            font-family: 'DM Mono', monospace;
+            color: var(--olive);
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .section-dark .faq-icon {
+            color: var(--olive-light);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            font-size: 0.95rem;
+            color: var(--gray);
+            line-height: 1.8;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+            padding-top: 0;
+        }
+
+        .section-dark .faq-answer {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-top: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 4rem;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Newsreader', serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .cta-subtitle {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-boxes {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-box {
+            background: var(--white);
+            border: 1px solid var(--gray-pale);
+            padding: 3rem;
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+            transition: all 0.3s;
+            border-radius: 8px;
+        }
+
+        .cta-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--olive);
+        }
+
+        .cta-box h4 {
+            font-family: 'Newsreader', serif;
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .cta-box p {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-box .btn {
+            background: var(--olive);
+            color: var(--white);
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .cta-box .btn:hover {
+            background: var(--olive-light);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+        }
+
+        .footer-brand {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            color: var(--olive-light);
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            color: #888;
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-col h5 {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--olive-light);
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-col a {
+            font-size: 0.9rem;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: var(--olive-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copy {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-social a {
+            font-size: 0.8rem;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-social a:hover {
+            color: var(--olive-light);
+        }
+
+        /* Reveal animations - Optimized with will-change */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            will-change: opacity, transform;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+            will-change: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-right {
+                min-height: 500px;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-logo {
+                font-size: 1rem;
+            }
+
+            .hero-left {
+                padding: 5rem 1.5rem 3rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+
+            .section {
+                padding: 3rem 1.5rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .cta-boxes {
+                flex-direction: column;
+            }
+
+            .cta-box {
+                width: 100%;
+                padding: 2rem 1.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .info-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .info-table td:first-child {
+                padding-bottom: 0.5rem;
+                border-bottom: none;
+            }
+
+            /* Better touch targets */
+            a, button {
+                min-height: 44px;
+                min-width: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Prevent zoom on input focus */
+            input, textarea, select {
+                font-size: 16px;
+            }
+
+            /* Optimize font sizes for mobile */
+            body {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hero-left {
+                padding: 4rem 1rem 2rem;
+            }
+
+            .section {
+                padding: 2.5rem 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">
+            plutas <span class="lab">lab</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#manifesto">Manifesto</a></li>
+            <li><a href="#builders-night">Builders Night</a></li>
+            <li><a href="#cohort">Cohort</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="/micro-grants">Grants</a></li>
+            <li><a href="/partners">Partners</a></li>
+        </ul>
+        <a href="#apply" class="nav-cta">Apply Now</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-badge">HSR LAYOUT • BANGALORE</div>
+            <h1 class="hero-title">The space where India's next <em>startups</em> are built.</h1>
+            <p class="hero-subtitle">
+                A community space in Bangalore for founders who build. We host Builders Night. 
+                We run cohorts. We do Demo Days. Companies start here.
+            </p>
+            <div class="hero-buttons">
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 1.8rem; border: 1px solid var(--gray-pale); display: inline-block; border-radius: 4px; cursor: not-allowed;">
+                    Coming Soon
+                </div>
+                <a href="#cohort" class="btn btn-secondary">Apply for Cohort</a>
+            </div>
+        </div>
+        <div class="hero-right"></div>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="section" id="manifesto">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Manifesto</span>
+                <h2 class="section-title reveal">The Case for Building in India</h2>
+            </div>
+
+            <div class="content-block reveal">
+                <p>For years, ambitious Indian founders were told: <strong>move to SF, join YC, or you're not serious.</strong></p>
+                <p><em>What if that's changing?</em></p>
+            </div>
+
+            <div class="content-block reveal">
+                <p>The best founders we know are building from Bangalore, not Bay Area. They're shipping products to global customers from HSR Layout. They're raising from top VCs without a US address.</p>
+                <p>The infrastructure exists. The talent exists. What's been missing is the <em>space</em> — a place where builders collide, where companies form, where the only thing that matters is what you ship.</p>
+            </div>
+
+            <div class="quote-block reveal">
+                Plutas Lab is that space.
+            </div>
+
+            <div class="content-block reveal">
+                <p>We're not an accelerator. We don't run a curriculum. We don't pretend to teach you how to build — you already know how. We just give you the room, the community, and the deadline.</p>
+                <p>Some of you will build alone. The solo founder path is real — Zoom, Vercel, Basecamp all started with one person. AI makes this even more possible.</p>
+                <p>Some of you will find co-founders here. People you'd never meet otherwise. That's what happens when you put builders in a room.</p>
+                <p><strong>We don't care how you build. We care that you build.</strong></p>
+            </div>
+
+            <div class="quote-block reveal">
+                Our bet: In 10 years, some of the best Indian startups will trace back to this room. Not because we taught them anything — because we gave them the space to start.
+            </div>
+        </div>
+    </section>
+
+    <!-- What Is Plutas Lab -->
+    <section class="section section-cream" id="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">About</span>
+                <h2 class="section-title reveal">What Is Plutas Lab?</h2>
+            </div>
+
+            <div class="content-block reveal">
+                <p>A community space in HSR Layout, Bangalore. Founders come here to work. To build alongside other founders. To ship.</p>
+                <p>We're partnered with multiple VCs and angel investors who believe in what we're building. They show up to our Demo Days. They invest in companies that come out of here.</p>
+            </div>
+
+            <h3 style="font-family: 'Newsreader', serif; text-align: center; color: var(--black); margin: 4rem 0 2rem; font-size: 1.6rem;" class="reveal">We Run Two Things</h3>
+
+            <div class="card-grid reveal">
+                <div class="card">
+                    <div class="card-icon">[01]</div>
+                    <h4>Builders Night</h4>
+                    <p>Monthly. 12 hours. 50 builders. Ship something by morning.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">[02]</div>
+                    <h4>Cohorts</h4>
+                    <p>45 days of focused building with selected founders. Demo Day at the end.</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 3rem; font-style: italic; color: var(--gray); font-size: 1rem;" class="reveal">That's it. No workshops. No lectures. No networking sessions.<br><strong>Just building.</strong></p>
+        </div>
+    </section>
+
+    <!-- Builders Night -->
+    <section class="section" id="builders-night">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Builders Night</span>
+                <h2 class="section-title reveal">One Night. One Rule: Ship.</h2>
+            </div>
+
+            <div class="content-block reveal">
+                <p>Every month, we lock in <strong>50 builders from 6 PM to 6 AM.</strong></p>
+                <p>Come with a problem. Leave with a product.</p>
+                <p>You'll be in a room with developers, designers, and founders who get it. Some are working on startups. Some are shipping side projects. Everyone is building.</p>
+            </div>
+
+            <h3 style="font-family: 'Newsreader', serif; color: var(--black); margin: 3rem 0 1.5rem; font-size: 1.2rem;" class="reveal">What's Included:</h3>
+            <ul class="feature-list reveal">
+                <li>Space to work all night</li>
+                <li>Fast WiFi, endless coffee, Red Bull</li>
+                <li>Demos at 6 AM — show what you built</li>
+                <li>Access to a community of builders</li>
+            </ul>
+
+            <div class="card reveal" style="margin-top: 3rem; text-align: center; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <div class="card-icon">✦</div>
+                <h4>Upcoming: January 3rd, 2026</h4>
+                <p style="margin-bottom: 2rem;">12 hours. Ship something. Open to all via application.</p>
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 1.8rem; border: 1px solid var(--gray-pale); display: inline-block; border-radius: 4px; cursor: not-allowed;">
+                    Coming Soon
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Cohort -->
+    <section class="section section-dark" id="cohort">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Cohort</span>
+                <h2 class="section-title reveal">45 Days. Build. Demo Day.</h2>
+            </div>
+
+            <div class="content-block reveal">
+                <p>Selected founders get access to Plutas Lab for <strong>45 days.</strong></p>
+                <p>You show up. You build. You ship.</p>
+                <p>At the end: <strong>Demo Day with VCs and angels who actually write checks.</strong></p>
+            </div>
+
+            <h3 style="font-family: 'Newsreader', serif; color: var(--olive-light); margin: 3rem 0 1.5rem; font-size: 1.2rem;" class="reveal">What's Included:</h3>
+
+            <table class="info-table reveal">
+                <tr><td>Space</td><td>Daily access to Plutas Lab</td></tr>
+                <tr><td>Community</td><td>Work alongside other founders in the same phase</td></tr>
+                <tr><td>Demo Day</td><td>Present to our investor network</td></tr>
+                <tr><td>Perks</td><td>Cloud credits, tools, and startup deals</td></tr>
+                <tr><td>Office Hours</td><td>Weekly check-ins to unblock you</td></tr>
+                <tr><td>Network</td><td>Access to founders who've built before</td></tr>
+            </table>
+
+            <div class="quote-block reveal" style="margin-top: 3rem;">
+                <strong>Cost:</strong> Free for now. We're figuring out sustainability — but founders don't pay.<br><br>
+                <strong>Equity:</strong> We don't take equity today. Someday, maybe. Not now.
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                <div style="font-family: 'DM Mono', monospace; font-size: 0.9rem; color: var(--olive-light); letter-spacing: 0.1em; text-transform: uppercase; padding: 1rem 2rem; border: 2px solid var(--olive-light); display: inline-block; border-radius: 4px;">
+                    Coming Soon
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Startup Perks -->
+    <section class="section section-cream">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Perks</span>
+                <h2 class="section-title reveal">Startup Perks</h2>
+            </div>
+
+            <p class="reveal" style="font-size: 1.05rem; margin-bottom: 2rem; text-align: center;">Founders in our cohort receive access to:</p>
+
+            <ul class="feature-list reveal">
+                <li><strong>Cloud Credits</strong> — AWS, GCP, Vercel, and more</li>
+                <li><strong>Dev Tools</strong> — Postman, Notion, Linear, Figma</li>
+                <li><strong>Payments</strong> — Razorpay/Stripe startup programs</li>
+                <li><strong>Legal</strong> — Templates and intros to startup lawyers</li>
+                <li><strong>Investor Intros</strong> — Direct access to VCs and angels in our network</li>
+            </ul>
+
+            <p style="font-style: italic; color: var(--gray); margin-top: 2rem; text-align: center; font-size: 0.95rem;" class="reveal">We keep adding to this. If you need something, we'll try to get it.</p>
+        </div>
+    </section>
+
+    <!-- Who Is This For -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Fit Check</span>
+                <h2 class="section-title reveal">Who Is This For?</h2>
+            </div>
+
+            <div class="card-grid" style="grid-template-columns: 1fr;">
+                <div class="card reveal">
+                    <h4>Plutas Lab is for you if:</h4>
+                    <ul class="feature-list" style="margin: 1rem 0;">
+                        <li>You're building a startup (or ready to start)</li>
+                        <li>You want to be around other founders who ship</li>
+                        <li>You love building more than talking about building</li>
+                        <li>You're based in Bangalore (or willing to be here)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 3rem; font-style: italic; color: var(--gray); font-size: 1rem;" class="reveal">We're not for everyone. That's okay.</p>
+        </div>
+    </section>
+
+    <!-- The Vibes -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">The Vibes</span>
+                <h2 class="section-title reveal">What It's Like</h2>
+            </div>
+
+            <div class="content-block reveal">
+                <p>This isn't a WeWork. It's not an office.</p>
+                <p><strong>It's a room full of founders building things.</strong></p>
+                <p>Late nights. Whiteboards full of ideas. The sound of keyboards. Someone debugging at 2 AM. Someone else shipping their landing page. Chai runs. Demo practice. Honest feedback.</p>
+                <p>The people you meet here might become co-founders. Or first hires. Or investors in each other's companies someday.</p>
+                <p><em>That's what happens when you put builders in a room.</em></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Principles -->
+    <section class="section section-cream">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Principles</span>
+                <h2 class="section-title reveal">Our Values</h2>
+            </div>
+
+            <div class="card-grid" style="grid-template-columns: 1fr;">
+                <div class="card reveal">
+                    <ul class="feature-list" style="margin: 0;">
+                        <li><strong>Building > Talking</strong> — The only thing that matters is what you ship.</li>
+                        <li><strong>Help Each Other</strong> — Share what you know. Unblock other founders. Win together.</li>
+                        <li><strong>Start Before You're Ready</strong> — Don't wait for permission. Build now.</li>
+                        <li><strong>Momentum is Everything</strong> — Ship fast. Learn fast. Iterate fast.</li>
+                        <li><strong>Think Long-Term</strong> — We're building companies, not projects.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">FAQ</span>
+                <h2 class="section-title reveal">Questions</h2>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>What exactly is Plutas Lab?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">A community space for founders in Bangalore. We run Builders Night (monthly, 12 hours, open to all via application) and Cohorts (45 days, selected founders, Demo Day at the end). It's not a co-working space, not a hacker house, not an accelerator. It's a space for people who build.</p>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>Is this a hacker house or residency?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">No. You don't live here. You come here to work on your startup. Then you go home.</p>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>How is this different from an accelerator?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">We don't run a curriculum. There are no lectures or workshops. We just give you space, community, and a deadline. You already know how to build — we're not here to teach you.</p>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>Do you take equity?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">Not today. Someday, maybe. For now, we're focused on building the community and proving the model.</p>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>How much does it cost?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">Builders Night is free. Cohort is free. We don't make money from founders. We're exploring sponsorships and grants to sustain this.</p>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>Can I build solo?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">Absolutely. Solo founding is a valid path — especially now with AI. You can work alone or find collaborators during the cohort. Your call.</p>
+            </div>
+
+            <div class="faq-item reveal">
+                <h4 class="faq-question">
+                    <span>Do I need to be in Bangalore?</span>
+                    <span class="faq-icon">+</span>
+                </h4>
+                <p class="faq-answer">Yes. This is fully in-person. Remote doesn't work for what we're building. If you're not in Bangalore, you'll need to be here for the cohort.</p>
+            </div>
+
+            <p style="margin-top: 3rem; font-style: italic; color: var(--gray); font-size: 0.95rem; text-align: center;" class="reveal">More questions? Email us: <a href="mailto:founders@plutas.in" style="color: var(--olive);">founders@plutas.in</a></p>
+        </div>
+    </section>
+
+    <!-- Apply CTA -->
+    <section class="cta-section" id="apply">
+        <div class="cta-content">
+            <h2 class="cta-title reveal">Join Us</h2>
+            <p class="cta-subtitle reveal">Take the first step towards building something meaningful</p>
+
+            <div class="cta-boxes reveal">
+                <div class="cta-box">
+                    <h4>Builders Night</h4>
+                    <p>January 3rd, 2026<br>12 hours. Ship something. Open to all.</p>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 1.8rem; border: 1px solid var(--gray-pale); display: inline-block; border-radius: 4px; cursor: not-allowed;">
+                        Coming Soon
+                    </div>
+                </div>
+                <div class="cta-box">
+                    <h4>Cohort 1</h4>
+                    <p>Coming Soon<br>45 days. Selected founders. Demo Day.</p>
+                    <div style="font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; padding: 0.9rem 1.8rem; border: 1px solid var(--gray-pale); display: inline-block; border-radius: 4px; cursor: not-allowed;">
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div>
+                <div class="footer-brand">PLUTAS_LAB</div>
+                <p class="footer-desc">
+                    A community space in Bangalore for founders who build. 
+                    We host Builders Night. We run cohorts. We do Demo Days. Companies start here.
+                </p>
+            </div>
+            <div class="footer-col">
+                <h5>Programs</h5>
+                <ul>
+                    <li><a href="#builders-night">Builders Night</a></li>
+                    <li><a href="#cohort">Cohort</a></li>
+                    <li><a href="/micro-grants">Micro Grants</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>About</h5>
+                <ul>
+                    <li><a href="#manifesto">Manifesto</a></li>
+                    <li><a href="#about">What We Do</a></li>
+                    <li><a href="/gallery">Gallery</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Connect</h5>
+                <ul>
+                    <li><a href="/partners">Partners</a></li>
+                    <li><a href="https://x.com/plutaslab" target="_blank">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/plutas.labs/" target="_blank">Instagram</a></li>
+                    <li><a href="mailto:founders@plutas.in">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="footer-copy">© 2025 Plutas Lab. HSR Layout, Bangalore.</p>
+            <div class="footer-social">
+            <a href="https://x.com/plutaslab" target="_blank">Twitter</a>
+            <a href="https://www.instagram.com/plutas.labs/" target="_blank">Instagram</a>
+        </div>
+        </div>
+    </footer>
+
+    <script>
+        // Performance: Check if device supports hover (not touch)
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        // Custom cursor - only on non-touch devices
+        if (!isTouchDevice) {
+            const cursorDot = document.getElementById('cursorDot');
+            const cursorRing = document.getElementById('cursorRing');
+
+            let rafId = null;
+            document.addEventListener('mousemove', (e) => {
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(() => {
+                    cursorDot.style.left = e.clientX - 4 + 'px';
+                    cursorDot.style.top = e.clientY - 4 + 'px';
+                    cursorRing.style.left = e.clientX - 16 + 'px';
+                    cursorRing.style.top = e.clientY - 16 + 'px';
+                });
+            });
+
+            // Hover effect for cursor
+            document.querySelectorAll('a, button, .card, .faq-question').forEach(el => {
+                el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+                el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+            });
+        }
+
+        // Optimized scroll reveal with Intersection Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // FAQ toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Smooth scroll with performance optimization
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

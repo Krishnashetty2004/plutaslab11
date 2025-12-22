@@ -1,325 +1,689 @@
 "use client"
 
-import Header from "@/components/Header"
-import Footer from "@/components/Footer"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 
 export default function MicroGrantsPage() {
   const [searchQuery, setSearchQuery] = useState("")
+  const [selectedAmount, setSelectedAmount] = useState<string>("all")
+  const [selectedAudience, setSelectedAudience] = useState<string>("all")
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [])
+
   const grants = [
-    {
-      name: "1517 Medici Project",
-      url: "https://www.1517fund.com/medici-project",
-      description: "$1K grants for high school, college students, and dropouts to launch projects to make humanity better, backed by 1517 Fund."
-    },
-    {
-      name: "5x5 Night",
-      url: "http://5x5night.com/",
-      description: "5x5 Night takes place once a month. The community votes on the ideas that will be presented at the event. The selected creators explain a $5,000 step that will move the idea forward, and will meet people who can help."
-    },
-    {
-      name: "Arraig Grants (formerly Éire Ventures)",
-      url: "https://arraig.com/micro-grants/",
-      description: "$500 microgrants for individuals and entrepreneurs focused on international markets, revenue/profitability, and an exploratory approach."
-    },
-    {
-      name: "ACX Grants",
-      url: "https://www.astralcodexten.com/p/acx-grants-results-2024",
-      description: "Grants program, organized by Scott Alexander, for \"good research and good projects with a minimum of paperwork.\" Runs irregularly."
-    },
-    {
-      name: "Atomic Fellowship",
-      url: "https://www.gradcapital.in/atomicfellow/",
-      description: "$5,000 no-strings-attached grant for students who want to work on science & engineering projects, with an option of an additional $40k investment by gradCapital."
-    },
-    {
-      name: "Awesome Foundation",
-      url: "http://www.awesomefoundation.org/",
-      description: "The Awesome Foundation is a global community advancing the interest of awesome in the universe, $1000 at a time. Each fully autonomous chapter supports awesome projects through micro-grants, usually given out monthly."
-    },
-    {
-      name: "Bed-Stuy Create & Connect Fund",
-      url: "https://laundromatproject.org/create-connect-fund/",
-      description: "A community micro-grant fund launched by The Laundromat Project providing $1,000 grants to seed and support the creative ideas and civic actions of artists, cultural practitioners, community builders, organizers, and makers in Bedford-Stuyvesant, Brooklyn (New York City)."
-    },
-    {
-      name: "Bellare Grants",
-      url: "https://bellaregrants.netlify.app/",
-      description: "Bellare Grants awards up to 1 lakh INR per year to Indian initiatives in education, healthcare, research, and open source projects (hardware and software) through financial contributions."
-    },
-    {
-      name: "cache money grants",
-      url: "https://cachemoney.xyz/grants/",
-      description: "$5K grants, paid in crypto (BTC, ETH, SOL), for \"hackers and/or artists who want to tackle interesting new ideas in the crypto space.\""
-    },
-    {
-      name: "Cactus Capital",
-      url: "https://cactuscapital.org/",
-      description: "$50-100 microgrants for student builders at any stage. Run by Nayel and Arhan, two high schoolers from northern Virginia."
-    },
-    {
-      name: "Clarity Health Fund",
-      url: "https://www.clarityhealthfund.org/",
-      description: "$1,000 USD microgrants for progress in psychedelics and drug policy. Clarity Health Fund's primary mission is to bring psychedelics into the wellness system. Larger grants are also available."
-    },
-    {
-      name: "Da Vinci Fellowship",
-      url: "https://davincifellowship.com/",
-      description: "An equity-free grant of €150,000 given to exceptional engineers, scientists, and builders who want to shape the future of technology in Europe."
-    },
-    {
-      name: "Echoing Green Fellowship",
-      url: "https://echoinggreen.org/fellowship/",
-      description: "A two-year, full-time fellowship for social sector leaders who challenge the status quo. $80,000 for individuals, $90,000 for partnerships, in addition to a flexible benefit stipend."
-    },
-    {
-      name: "Emergent Ventures",
-      url: "https://www.mercatus.org/emergentventures",
-      description: "Emergent Ventures, a new fellowship and grant program from the Mercatus Center, seeks to support entrepreneurs and brilliant minds with highly scalable, \"zero to one\" ideas for meaningfully improving society."
-    },
-    {
-      name: "Forge Grants",
-      url: "https://www.forgegrant.com/",
-      description: "The Forge Grant Initiative provides no-strings-attached grants up to $250 for young creator-engineers (13-25) who can both dream up viral concepts and build the technical infrastructure to make them reality."
-    },
-    {
-      name: "Fortitude Fund",
-      url: "https://fortitudefund.com/",
-      description: "The Fortitude Fund provides $1,000 grants to create a entrepreneurial culture in northeast Indiana that welcomes new ideas and encourages them to dream bigger. Upon receiving an initial grant and showing progress in their business, grantees are also eligible to receive a Next Level Grant of $2,500."
-    },
-    {
-      name: "Feather Grants",
-      url: "https://www.gradcapital.in/feathergrants/",
-      description: "INR 15,000 grant ($180) to students to bring their boldest ideas to life—no strings attached. The project can be anything that sets your heart racing, whether it's creating a short film, conducting a science experiment, competing in a national dance competition, or archiving local history."
-    },
-    {
-      name: "Gumroad Creators Fund",
-      url: "https://blog.gumroad.com/post/183876075758/introducing-the-first-batch-of-our-creators-fund",
-      description: "Over the course of the year, Gumroad will allocate over $50,000 (10% of their profits) to a variety of creators and creative projects. Each \"grant\" will be between $500 and $5,000."
-    },
-    {
-      name: "Indie Fund",
-      url: "http://indie-fund.com/",
-      description: "Indie Fund aims to support the growth of games as a medium by helping indie developers get financially independent and stay financially independent."
-    },
-    {
-      name: "Inflection Grants",
-      url: "https://www.inflectiongrants.com/",
-      description: "$2,000 grants for people under 25 to fuel their passion, idea, or themselves."
-    },
-    {
-      name: "Lift Off Grant",
-      url: "https://www.liftoffgrant.com/",
-      description: "Empowering young innovators (18 and under) with $50-$100 microgrants to turn their ideas into reality. No strings attached - just your creativity and passion."
-    },
-    {
-      name: "Macktez Summer Stipend",
-      url: "https://www.macktez.com/stipend/",
-      description: "The Macktez Summer Stipend is a $1,000 development grant to encourage creative people to pursue and complete their personal projects."
-    },
-    {
-      name: "Magnificent Grants",
-      url: "https://www.magnificentgrants.com/",
-      description: "$10,000 fellowships to outliers taking down the walls of universities, credentialism, and elitist hierarchies to have impact on the world."
-    },
-    {
-      name: "Merge Grant",
-      url: "https://merge.club/program/mergegrant",
-      description: "Merge Grant is a micro-grant initiative (between $50 and $1,000) designed to give ambitious builders resources as they pursue compelling projects."
-    },
-    {
-      name: "Mitzvoters",
-      url: "https://www.mitzvoters.org/",
-      description: "Mitzvoters is a group that leverages $50/month collective giving to award $500 grants to \"cast a vote about what we want to thrive.\""
-    },
-    {
-      name: "Nagarathna Memorial Grant",
-      url: "https://thejeshgn.com/projects/nagarathna-memorial-grant/",
-      description: "Up to INR 80,000 (~ $1,100) to people. No questions asked."
-    },
-    {
-      name: "Native Cultures Fund",
-      url: "https://www.hafoundation.org/Grantseekers/Native-Cultures-Fund",
-      description: "$1,000-$10,000 for projects that support California native culture, arts, knowledge systems, and lifeways."
-    },
-    {
-      name: "NLNet Foundation",
-      url: "https://nlnet.nl/propose/",
-      description: "$5K to $50K for open source projects by independent researchers and developers. NLnet also funds standards efforts. Releasing software, hardware, and content under open licenses, and the application of open standards where possible are transversal requirements for projects to be eligible for grants."
-    },
-    {
-      name: "Open Humans Project Grant",
-      url: "https://www.openhumans.org/grants/",
-      description: "$5,000 for human data projects (ex. genetic, activity or social media data) that help grow the Open Humans ecosystem."
-    },
-    {
-      name: "Patch Grants",
-      url: "https://www.joinpatch.org/grants/",
-      description: "Grants of up to €1000 for young people based in Ireland who are working on early-stage projects and products. Grantees are paired with a mentor who has experience in their focus area and can offer support in setting and achieving ambitious goals."
-    },
-    {
-      name: "Pollination Project",
-      url: "https://thepollinationproject.org/",
-      description: "The Pollination Project awards seed grants daily to social change leaders seeking to benefit the world (both individuals, and community groups that do not have paid staff). Up to $1,000 per initial grant. Successful grantees become eligible for additional grants up to $5,000."
-    },
-    {
-      name: "Primer Grants",
-      url: "https://www.withprimer.com/blog/introducing-primer-grants",
-      description: "Primer Grants are awards of up to $500 per student to fund ambitious projects from kids around the world."
-    },
-    {
-      name: "Prototype Fund",
-      url: "https://prototypefund.de",
-      description: "The Prototype Fund is a collaboration between the Open Knowledge Foundation Germany and the German Federal Ministry of Education and Research. You can get up to 47.500€ for your open source project. This grant is only available for people living in Germany, but available with any passport."
-    },
-    {
-      name: "Puffin Foundation",
-      url: "http://www.puffinfoundation.org/grants-info.html",
-      description: "Up to $2,500 for emerging artists whose works might have difficulty being aired due to their genre and/or social philosophy."
-    },
-    {
-      name: "Science Debate",
-      url: "https://sciencedebate.org/minigrants.html",
-      description: "$1,000-$3,000 \"mini grants\" for community organizers and science policy advocates across the United States, particularly those who organize efforts and coordinate the mobilization of people to promote discussion of science policy by electoral candidates. Science Debate is a nonpartisan organization."
-    },
-    {
-      name: "SciFounders",
-      url: "https://scifounders.com/",
-      description: "The SciFounder Fellowship is \"designed to encourage early-career scientists with great ideas to get started on their own companies. You will receive an initial investment of $400,000 and mentorship in the form of regular office hours for one year.\""
-    },
-    {
-      name: "Sisters of Perpetual Indulgence",
-      url: "https://www.thesisters.org/grants",
-      description: "$250-$1000 grants to support under-funded, small organizations and projects providing direct services to under-served communities. The projects they support tend to be progressive grassroots projects that promote wellness, joy, tolerance, and diversity within our communities, and that support the LGBTQ+ community. Bay Area projects preferred."
-    },
-    {
-      name: "Thiel Fellowship",
-      url: "https://thielfellowship.org/",
-      description: "$100,000 over two years for young people who want to build new things. Thiel Fellows skip or stop out of college to receive a $100,000 grant and support from the Thiel Foundation's network of founders, investors, and scientists."
-    },
-    {
-      name: "Trelis AI Grants",
-      url: "https://trelis.com/trelis-ai-grants/",
-      description: "$500 grants for individuals pursuing advances in the field of AI models, such as training, inferencing, and fine-tuning."
-    },
-    {
-      name: "Unitary Fund",
-      url: "http://unitary.fund/",
-      description: "Get $4,000 for your open source quantum computing project."
-    },
-    {
-      name: "VitaDAO Fellowship",
-      url: "https://www.vitadao.com/fellowship",
-      description: "Apply for $100-$3,000 fast microgrants to pursue your effort in longevity. You can meet other fellows on a bi-monthly call to support each other, as well as get awareness through the broader community, and apply for up to $1m in translational research funding."
-    },
-    {
-      name: "Xor Grant",
-      url: "https://xorgrant.org",
-      description: "Xor Grant is a no-strings-attached microgrant awarded to high school seniors pursuing a computer science or cybersecurity program in college. Its mission is to support students who are passionate about solving interesting problems and love thinking outside the box."
-    }
+    { name: "1517 Medici Project", url: "https://www.1517fund.com/medici-project", description: "$1K grants for high school, college students, and dropouts to launch projects to make humanity better, backed by 1517 Fund.", amount: "small", audience: "students" },
+    { name: "5x5 Night", url: "http://5x5night.com/", description: "5x5 Night takes place once a month. The community votes on the ideas that will be presented at the event. The selected creators explain a $5,000 step that will move the idea forward.", amount: "medium", audience: "general" },
+    { name: "Arraig Grants", url: "https://arraig.com/micro-grants/", description: "$500 microgrants for individuals and entrepreneurs focused on international markets, revenue/profitability, and an exploratory approach.", amount: "small", audience: "entrepreneurs" },
+    { name: "ACX Grants", url: "https://www.astralcodexten.com/p/acx-grants-results-2024", description: "Grants program for \"good research and good projects with a minimum of paperwork.\" Runs irregularly.", amount: "medium", audience: "researchers" },
+    { name: "Atomic Fellowship", url: "https://www.gradcapital.in/atomicfellow/", description: "$5,000 no-strings-attached grant for students who want to work on science & engineering projects.", amount: "medium", audience: "students" },
+    { name: "Awesome Foundation", url: "http://www.awesomefoundation.org/", description: "A global community advancing the interest of awesome in the universe, $1000 at a time.", amount: "small", audience: "general" },
+    { name: "Bellare Grants", url: "https://bellaregrants.netlify.app/", description: "Up to 1 lakh INR per year to Indian initiatives in education, healthcare, research, and open source projects.", amount: "medium", audience: "india" },
+    { name: "cache money grants", url: "https://cachemoney.xyz/grants/", description: "$5K grants, paid in crypto, for hackers and artists tackling interesting new ideas in the crypto space.", amount: "medium", audience: "tech" },
+    { name: "Cactus Capital", url: "https://cactuscapital.org/", description: "$50-100 microgrants for student builders at any stage.", amount: "small", audience: "students" },
+    { name: "Clarity Health Fund", url: "https://www.clarityhealthfund.org/", description: "$1,000 USD microgrants for progress in psychedelics and drug policy.", amount: "small", audience: "researchers" },
+    { name: "Da Vinci Fellowship", url: "https://davincifellowship.com/", description: "150,000 equity-free grant for exceptional engineers, scientists, and builders in Europe.", amount: "large", audience: "tech" },
+    { name: "Emergent Ventures", url: "https://www.mercatus.org/emergentventures", description: "Fellowship and grant program for entrepreneurs with highly scalable, \"zero to one\" ideas.", amount: "large", audience: "entrepreneurs" },
+    { name: "Forge Grants", url: "https://www.forgegrant.com/", description: "No-strings-attached grants up to $250 for young creator-engineers (13-25).", amount: "small", audience: "students" },
+    { name: "Feather Grants", url: "https://www.gradcapital.in/feathergrants/", description: "INR 15,000 grant ($180) to students to bring their boldest ideas to life.", amount: "small", audience: "india" },
+    { name: "Gumroad Creators Fund", url: "https://blog.gumroad.com/post/183876075758/introducing-the-first-batch-of-our-creators-fund", description: "$500 to $5,000 grants for creators and creative projects.", amount: "medium", audience: "general" },
+    { name: "Inflection Grants", url: "https://www.inflectiongrants.com/", description: "$2,000 grants for people under 25 to fuel their passion, idea, or themselves.", amount: "medium", audience: "students" },
+    { name: "Magnificent Grants", url: "https://www.magnificentgrants.com/", description: "$10,000 fellowships to outliers taking down the walls of universities and credentialism.", amount: "large", audience: "general" },
+    { name: "Merge Grant", url: "https://merge.club/program/mergegrant", description: "Micro-grants between $50 and $1,000 for ambitious builders.", amount: "small", audience: "general" },
+    { name: "NLNet Foundation", url: "https://nlnet.nl/propose/", description: "$5K to $50K for open source projects by independent researchers and developers.", amount: "large", audience: "tech" },
+    { name: "Pollination Project", url: "https://thepollinationproject.org/", description: "Seed grants daily to social change leaders. Up to $1,000 per initial grant.", amount: "small", audience: "general" },
+    { name: "Thiel Fellowship", url: "https://thielfellowship.org/", description: "$100,000 over two years for young people who want to build new things.", amount: "large", audience: "students" },
+    { name: "Unitary Fund", url: "http://unitary.fund/", description: "$4,000 for your open source quantum computing project.", amount: "medium", audience: "tech" },
+    { name: "VitaDAO Fellowship", url: "https://www.vitadao.com/fellowship", description: "$100-$3,000 fast microgrants for longevity research efforts.", amount: "medium", audience: "researchers" },
   ]
 
-  // Filter grants based on search query
   const filteredGrants = useMemo(() => {
-    if (!searchQuery) return grants
-    const query = searchQuery.toLowerCase()
     return grants.filter((grant) => {
-      return (
-        grant.name.toLowerCase().includes(query) ||
-        grant.description.toLowerCase().includes(query) ||
-        grant.url.toLowerCase().includes(query)
-      )
+      const matchesSearch = !searchQuery ||
+        grant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        grant.description.toLowerCase().includes(searchQuery.toLowerCase())
+
+      const matchesAmount = selectedAmount === "all" || grant.amount === selectedAmount
+      const matchesAudience = selectedAudience === "all" || grant.audience === selectedAudience
+
+      return matchesSearch && matchesAmount && matchesAudience
     })
-  }, [searchQuery])
+  }, [searchQuery, selectedAmount, selectedAudience])
+
+  const clearFilters = () => {
+    setSearchQuery("")
+    setSelectedAmount("all")
+    setSelectedAudience("all")
+  }
+
+  const hasActiveFilters = searchQuery || selectedAmount !== "all" || selectedAudience !== "all"
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Header />
-      <main className="pt-24 pb-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl font-bold mb-4 text-white font-serif">Micro Grants</h1>
-          
-          <div className="mb-8 text-slate-300 leading-relaxed font-sans text-sm sm:text-base">
-            <p className="mb-6">
-              A list of microgrant programs designed to help you pursue and build on your best ideas.
-            </p>
+    <>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Newsreader:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+        :root {
+          --white: #FAFAF8;
+          --black: #1a1a1a;
+          --olive: #4A5D23;
+          --olive-light: #6B7F3A;
+          --olive-pale: #E8EBD9;
+          --olive-muted: #8B9A6D;
+          --gray: #666;
+          --gray-light: #999;
+          --gray-pale: #E5E5E3;
+          --cream: #F5F5F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        ::selection { background: var(--olive); color: var(--white); }
+        html { scroll-behavior: smooth; }
+
+        body {
+          font-family: 'Inter', sans-serif;
+          background: var(--white);
+          color: var(--black);
+          line-height: 1.6;
+          font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 1000;
+          background: var(--white);
+          border-bottom: 1px solid var(--gray-pale);
+          padding: 1rem 2rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .nav-logo {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.2rem;
+          font-weight: 400;
+          color: var(--black);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          letter-spacing: 0.02em;
+        }
+
+        .nav-logo .lab {
+          font-style: italic;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 2.5rem;
+          list-style: none;
+        }
+
+        .nav-links a {
+          font-size: 0.8rem;
+          color: var(--gray);
+          text-decoration: none;
+          transition: color 0.2s;
+          position: relative;
+        }
+
+        .nav-links a::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background: var(--olive);
+          transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+          color: var(--black);
+        }
+
+        .nav-links a:hover::after {
+          width: 100%;
+        }
+
+        .nav-links a.active {
+          color: var(--black);
+        }
+
+        .nav-links a.active::after {
+          width: 100%;
+        }
+
+        .nav-cta {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          padding: 0.6rem 1.2rem;
+          background: var(--olive);
+          color: var(--white);
+          text-decoration: none;
+          border-radius: 4px;
+          transition: all 0.2s;
+        }
+
+        .nav-cta:hover {
+          background: var(--olive-light);
+          transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero-section {
+          min-height: 60vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          padding: 10rem 2rem 4rem;
+          background: var(--black);
+          color: var(--white);
+          position: relative;
+        }
+
+        .hero-content {
+          max-width: 700px;
+          position: relative;
+          z-index: 10;
+        }
+
+        .hero-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          color: var(--olive-light);
+          margin-bottom: 2rem;
+          padding: 0.4rem 0.8rem;
+          background: rgba(74, 93, 35, 0.2);
+          border-radius: 3px;
+          width: fit-content;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .hero-badge::before {
+          content: '';
+          width: 6px;
+          height: 6px;
+          background: var(--olive-light);
+          border-radius: 50%;
+          animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.4; }
+        }
+
+        .hero-title {
+          font-family: 'Newsreader', serif;
+          font-size: clamp(2.5rem, 4vw, 4rem);
+          font-weight: 400;
+          line-height: 1.1;
+          margin-bottom: 1.5rem;
+          color: var(--white);
+        }
+
+        .hero-subtitle {
+          font-size: 1.1rem;
+          color: rgba(255, 255, 255, 0.8);
+          max-width: 600px;
+          margin: 0 auto;
+          line-height: 1.8;
+        }
+
+        /* Filters */
+        .filters-section {
+          max-width: 1200px;
+          margin: -3rem auto 3rem;
+          padding: 0 2rem;
+          position: relative;
+          z-index: 10;
+        }
+
+        .filters-container {
+          background: var(--white);
+          border: 1px solid var(--gray-pale);
+          border-radius: 8px;
+          padding: 2.5rem;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .filters-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1.5rem;
+        }
+
+        .filters-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          color: var(--olive);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+
+        .clear-all-btn {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          color: var(--gray);
+          background: none;
+          border: none;
+          cursor: pointer;
+          transition: color 0.2s;
+        }
+
+        .clear-all-btn:hover { color: var(--olive); }
+
+        .search-input {
+          width: 100%;
+          padding: 1rem 1.5rem;
+          background: var(--white);
+          border: 1px solid var(--gray-pale);
+          font-size: 0.95rem;
+          font-family: 'Inter', sans-serif;
+          outline: none;
+          color: var(--black);
+          margin-bottom: 1.5rem;
+          border-radius: 4px;
+          transition: border-color 0.2s;
+        }
+
+        .search-input:focus { border-color: var(--olive); }
+        .search-input::placeholder { color: var(--gray-light); }
+
+        .filter-groups {
+          display: flex;
+          gap: 3rem;
+          flex-wrap: wrap;
+        }
+
+        .filter-group {
+          flex: 1;
+          min-width: 200px;
+        }
+
+        .filter-group-label {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.65rem;
+          color: var(--gray);
+          letter-spacing: 0.05em;
+          margin-bottom: 0.75rem;
+          display: block;
+          text-transform: uppercase;
+        }
+
+        .filter-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.5rem;
+        }
+
+        .filter-btn {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          padding: 0.5rem 1rem;
+          background: var(--white);
+          border: 1px solid var(--gray-pale);
+          color: var(--black);
+          cursor: pointer;
+          transition: all 0.2s;
+          border-radius: 4px;
+        }
+
+        .filter-btn:hover {
+          border-color: var(--olive);
+          color: var(--olive);
+        }
+
+        .filter-btn.active {
+          background: var(--olive);
+          border-color: var(--olive);
+          color: var(--white);
+        }
+
+        /* Grants */
+        .grants-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 2rem 6rem;
+        }
+
+        .grants-count {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          color: var(--gray);
+          letter-spacing: 0.05em;
+          text-align: center;
+          margin-bottom: 2rem;
+          text-transform: uppercase;
+        }
+
+        .grants-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+          gap: 2rem;
+        }
+
+        .grant-card {
+          background: var(--white);
+          border: 1px solid var(--gray-pale);
+          border-radius: 8px;
+          padding: 2rem;
+          text-decoration: none;
+          color: inherit;
+          transition: all 0.3s;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .grant-card:hover {
+          border-color: var(--olive);
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .grant-name {
+          font-family: 'Newsreader', serif;
+          font-size: 1.3rem;
+          font-weight: 500;
+          margin-bottom: 0.75rem;
+          color: var(--black);
+        }
+
+        .grant-tags {
+          display: flex;
+          gap: 0.5rem;
+          margin-bottom: 1rem;
+          flex-wrap: wrap;
+        }
+
+        .grant-tag {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.65rem;
+          padding: 0.3rem 0.8rem;
+          background: var(--olive-pale);
+          color: var(--olive);
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          border-radius: 3px;
+        }
+
+        .grant-tag.medium {
+          background: rgba(74, 93, 35, 0.15);
+        }
+
+        .grant-tag.large {
+          background: rgba(74, 93, 35, 0.25);
+        }
+
+        .grant-desc {
+          font-size: 0.95rem;
+          color: var(--gray);
+          line-height: 1.7;
+          flex: 1;
+          margin-bottom: 1.5rem;
+        }
+
+        .grant-link {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.7rem;
+          color: var(--olive);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        .grant-card:hover .grant-link { color: var(--olive-light); }
+
+        /* No Results */
+        .no-results {
+          text-align: center;
+          padding: 4rem 2rem;
+          background: var(--white);
+          border: 1px solid var(--gray-pale);
+          grid-column: 1 / -1;
+          border-radius: 8px;
+        }
+
+        .no-results p {
+          font-family: 'Newsreader', serif;
+          font-size: 1.2rem;
+          color: var(--black);
+          margin-bottom: 2rem;
+        }
+
+        .clear-btn {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.75rem;
+          background: var(--olive);
+          color: var(--white);
+          border: 1px solid var(--olive);
+          padding: 0.8rem 1.5rem;
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          border-radius: 4px;
+          transition: all 0.2s;
+        }
+
+        .clear-btn:hover {
+          background: var(--olive-light);
+          border-color: var(--olive-light);
+        }
+
+        /* Footer */
+        footer {
+          padding: 4rem 2rem 2rem;
+          background: var(--black);
+          color: var(--white);
+          text-align: center;
+        }
+
+        .footer-brand {
+          font-family: 'DM Mono', monospace;
+          font-size: 0.85rem;
+          font-weight: 500;
+          margin-bottom: 1rem;
+          color: var(--olive-light);
+        }
+
+        .footer-desc {
+          font-size: 0.9rem;
+          color: #888;
+          line-height: 1.7;
+          max-width: 400px;
+          margin: 0 auto 2rem;
+        }
+
+        .footer-links {
+          display: flex;
+          justify-content: center;
+          gap: 2rem;
+          margin-bottom: 2rem;
+          flex-wrap: wrap;
+        }
+
+        .footer-links a {
+          font-size: 0.85rem;
+          color: #888;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+          color: var(--olive-light);
+        }
+
+        .footer-copy {
+          font-size: 0.8rem;
+          color: #666;
+          margin-top: 2rem;
+          padding-top: 2rem;
+          border-top: 1px solid #333;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          nav { padding: 1rem 1.5rem; }
+          .nav-links { display: none; }
+          .hero-section { padding: 8rem 1.5rem 3rem; }
+          .hero-title { font-size: 2rem; }
+          .filters-section { padding: 0 1.5rem; margin-top: -2rem; }
+          .filters-container { padding: 1.5rem; }
+          .filter-groups { flex-direction: column; gap: 1.5rem; }
+          .grants-container { padding: 0 1.5rem 4rem; }
+          .grants-grid { grid-template-columns: 1fr; }
+        }
+      `}} />
+
+      {/* Navigation */}
+      <nav>
+        <a href="/landing.html" className="nav-logo">
+          plutas <span className="lab">lab</span>
+        </a>
+        <ul className="nav-links">
+          <li><a href="/landing.html#manifesto">Manifesto</a></li>
+          <li><a href="/landing.html#builders-night">Builders Night</a></li>
+          <li><a href="/landing.html#cohort">Cohort</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/micro-grants" className="active">Grants</a></li>
+          <li><a href="/partners">Partners</a></li>
+          <li><a href="/landing.html#faq">FAQ</a></li>
+        </ul>
+        <a href="/landing.html#apply" className="nav-cta">Apply Now</a>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <div className="hero-badge">FUNDING OPPORTUNITIES</div>
+          <h1 className="hero-title">Micro Grants</h1>
+          <p className="hero-subtitle">
+            A curated collection of patronage for builders, researchers, and dreamers.
+            Capital to fuel your boldest ideas.
+          </p>
+        </div>
+      </section>
+
+      {/* Filters */}
+      <div className="filters-section">
+        <div className="filters-container">
+          <div className="filters-header">
+            <span className="filters-label">Filter Grants</span>
+            {hasActiveFilters && (
+              <button className="clear-all-btn" onClick={clearFilters}>
+                Clear all
+              </button>
+            )}
           </div>
 
-          {/* Filter Section */}
-          <div className="mb-8">
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-white/10">
-              <label htmlFor="search" className="block text-white font-semibold mb-3 font-serif">
-                Filter Grants
-              </label>
-              <input
-                id="search"
-                type="text"
-                placeholder="Search by name, description, or amount..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 bg-black/50 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/20 transition-all font-sans"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="mt-3 text-sm text-gray-400 hover:text-white transition-colors font-sans"
-                >
-                  Clear filter
-                </button>
-              )}
+          <input
+            type="text"
+            className="search-input"
+            placeholder="Search by name or description..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          <div className="filter-groups">
+            <div className="filter-group">
+              <span className="filter-group-label">Amount</span>
+              <div className="filter-buttons">
+                {['all', 'small', 'medium', 'large'].map((amt) => (
+                  <button
+                    key={amt}
+                    className={`filter-btn ${selectedAmount === amt ? 'active' : ''}`}
+                    onClick={() => setSelectedAmount(amt)}
+                  >
+                    {amt === 'all' ? 'All' : amt === 'small' ? '<$1K' : amt === 'medium' ? '$1K-$10K' : '$10K+'}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="filter-group">
+              <span className="filter-group-label">Audience</span>
+              <div className="filter-buttons">
+                {['all', 'students', 'tech', 'researchers', 'india'].map((aud) => (
+                  <button
+                    key={aud}
+                    className={`filter-btn ${selectedAudience === aud ? 'active' : ''}`}
+                    onClick={() => setSelectedAudience(aud)}
+                  >
+                    {aud === 'all' ? 'All' : aud === 'researchers' ? 'Research' : aud.charAt(0).toUpperCase() + aud.slice(1)}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Results Count */}
-          {searchQuery && (
-            <div className="text-center text-gray-400 text-sm font-sans mb-4">
-              Showing {filteredGrants.length} of {grants.length} grants
-            </div>
-          )}
+      {/* Grants List */}
+      <div className="grants-container">
+        <div className="grants-count">
+          Showing {filteredGrants.length} of {grants.length} grants
+        </div>
 
-          {/* Filtered Results */}
+        <div className="grants-grid">
           {filteredGrants.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-400 font-sans text-lg">
-                No grants found matching "{searchQuery}"
-              </p>
-              <button
-                onClick={() => setSearchQuery("")}
-                className="mt-4 text-white hover:text-gray-300 underline font-sans"
-              >
-                Clear filter
+            <div className="no-results">
+              <p>No grants found matching your criteria</p>
+              <button className="clear-btn" onClick={clearFilters}>
+                Clear Filters
               </button>
             </div>
           ) : (
-            <div className="space-y-6 mb-12">
-              {filteredGrants.map((grant, index) => (
-              <section 
-                key={index}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/10 hover:border-white/20 transition-all"
+            filteredGrants.map((grant, i) => (
+              <a
+                key={i}
+                href={grant.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="grant-card"
               >
-                <h2 className="text-2xl sm:text-3xl font-bold mb-3 text-white font-serif">
-                  {grant.name}
-                </h2>
-                <a 
-                  href={grant.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 underline mb-3 block font-sans text-sm break-all"
-                >
-                  {grant.url}
-                </a>
-                <p className="text-slate-300 leading-relaxed font-sans text-sm sm:text-base">
-                  {grant.description}
-                </p>
-              </section>
-              ))}
-            </div>
+                <h2 className="grant-name">{grant.name}</h2>
+                <div className="grant-tags">
+                  <span className={`grant-tag ${grant.amount}`}>
+                    {grant.amount === 'small' ? '<$1K' : grant.amount === 'medium' ? '$1K-$10K' : '$10K+'}
+                  </span>
+                  <span className="grant-tag">{grant.audience.toUpperCase()}</span>
+                </div>
+                <p className="grant-desc">{grant.description}</p>
+                <span className="grant-link">Visit Grant →</span>
+              </a>
+            ))
           )}
-
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+
+      {/* Footer */}
+      <footer>
+        <div className="footer-brand">PLUTAS_LAB</div>
+        <p className="footer-desc">
+          A community space in Bangalore for founders who build. 
+          We host Builders Night. We run cohorts. We do Demo Days.
+        </p>
+        <div className="footer-links">
+          <a href="https://x.com/plutaslab" target="_blank">Twitter</a>
+          <a href="https://www.instagram.com/plutas.labs/" target="_blank">Instagram</a>
+          <a href="mailto:founders@plutas.in">Email</a>
+          <a href="/micro-grants">Micro Grants</a>
+        </div>
+        <p className="footer-copy">© 2025 Plutas Lab. HSR Layout, Bangalore.</p>
+      </footer>
+    </>
   )
 }
-
