@@ -556,7 +556,6 @@ export default function MicroGrantsPage() {
         <ul className="nav-links">
           <li><a href="/landing.html#manifesto">Manifesto</a></li>
           <li><a href="/landing.html#builders-night">Builders Night</a></li>
-          <li><a href="/landing.html#cohort">Cohort</a></li>
           <li><a href="/gallery">Gallery</a></li>
           <li><a href="/micro-grants" className="active">Grants</a></li>
           <li><a href="/partners">Partners</a></li>
@@ -673,8 +672,8 @@ export default function MicroGrantsPage() {
       <footer>
         <div className="footer-brand">PLUTAS_LAB</div>
         <p className="footer-desc">
-          A community space in Bangalore for founders who build. 
-          We host Builders Night. We run cohorts. We do Demo Days.
+          A tech community of product makers in Bangalore HSR.
+          We host Builders Night. We lock in. We learn from each other.
         </p>
         <div className="footer-links">
           <a href="https://x.com/plutaslab" target="_blank">Twitter</a>

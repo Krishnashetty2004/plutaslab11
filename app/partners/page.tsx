@@ -455,7 +455,6 @@ export default function PartnersPage() {
         <ul className="nav-links">
           <li><a href="/landing.html#manifesto">Manifesto</a></li>
           <li><a href="/landing.html#builders-night">Builders Night</a></li>
-          <li><a href="/landing.html#cohort">Cohort</a></li>
           <li><a href="/gallery">Gallery</a></li>
           <li><a href="/micro-grants">Grants</a></li>
           <li><a href="/partners" className="active">Partners</a></li>
@@ -479,10 +478,10 @@ export default function PartnersPage() {
       <div className="content-section">
         <div className="section-content">
           <p>
-            Plutas Lab is a community space in Bangalore where founders come to build. We run <strong>Builders Night</strong> — monthly twice 12-hour lockdowns where 50+ builders ship real products. And <strong>Cohorts</strong> — 45-day intensives ending in Demo Day with investors.
+            Plutas Lab is a tech community of product makers in Bangalore HSR. We run <strong>Builders Night</strong> — 2-3 times a month, we lock in for 12-24 hours where builders ship real products and learn from each other.
           </p>
           <p>
-            We don't take equity. We keep programs free. Your support makes that possible.
+            We keep programs free. Your support makes that possible.
           </p>
         </div>
 
@@ -513,16 +512,8 @@ export default function PartnersPage() {
               <td>Sponsor a monthly event. Logo, demo slot, direct access.</td>
             </tr>
             <tr>
-              <td className="sponsorship-type">Cohort</td>
-              <td>Back a 45-day program. First look at all founders.</td>
-            </tr>
-            <tr>
               <td className="sponsorship-type">Infra & Tools</td>
               <td>Provide cloud credits, APIs, or dev tools.</td>
-            </tr>
-            <tr>
-              <td className="sponsorship-type">Demo Day</td>
-              <td>Sponsor our investor showcase. Speak to the room.</td>
             </tr>
             <tr>
               <td className="sponsorship-type">Grants</td>
@@ -569,8 +560,8 @@ export default function PartnersPage() {
       <footer>
         <div className="footer-brand">PLUTAS_LAB</div>
         <p className="footer-desc">
-          A community space in Bangalore for founders who build. 
-          We host Builders Night. We run cohorts. We do Demo Days.
+          A tech community of product makers in Bangalore HSR.
+          We host Builders Night. We lock in. We learn from each other.
         </p>
         <div className="footer-links">
           <a href="https://x.com/plutaslab" target="_blank">Twitter</a>

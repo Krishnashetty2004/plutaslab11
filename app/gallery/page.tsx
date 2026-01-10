@@ -500,13 +500,12 @@ export default function GalleryPage() {
         <ul className="nav-links">
           <li><a href="/landing.html#manifesto">Manifesto</a></li>
           <li><a href="/landing.html#builders-night">Builders Night</a></li>
-          <li><a href="/landing.html#cohort">Cohort</a></li>
           <li><a href="/gallery" className="active">Gallery</a></li>
           <li><a href="/micro-grants">Grants</a></li>
           <li><a href="/partners">Partners</a></li>
           <li><a href="/landing.html#faq">FAQ</a></li>
         </ul>
-        <a href="/landing.html#apply" className="nav-cta">Apply Now</a>
+        <a href="/landing.html#apply" className="nav-cta">Join Us</a>
       </nav>
 
       {/* Hero Section */}
@@ -515,7 +514,7 @@ export default function GalleryPage() {
           <div className="hero-badge">BUILDERS NIGHT</div>
           <h1 className="hero-title">Gallery</h1>
           <p className="hero-subtitle">
-            Moments from our monthly Builders Night. 12 hours. 50 builders. One rule: ship.
+            Moments from our Builders Night. 12-24 hours. Builders locking in. One rule: ship.
           </p>
         </div>
       </section>
@@ -604,8 +603,8 @@ export default function GalleryPage() {
       <footer>
         <div className="footer-brand">PLUTAS_LAB</div>
         <p className="footer-desc">
-          A community space in Bangalore for founders who build. 
-          We host Builders Night. We run cohorts. We do Demo Days.
+          A tech community of product makers in Bangalore HSR.
+          We host Builders Night. We lock in. We learn from each other.
         </p>
         <div className="footer-links">
           <a href="https://x.com/plutaslab" target="_blank">Twitter</a>

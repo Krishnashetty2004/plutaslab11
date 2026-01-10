@@ -43,8 +43,8 @@ export default function Footer() {
               maxWidth: '300px',
             }}
           >
-            A hacker space in Bangalore for builders who ship.
-            No pitch decks. No networking. Just building.
+            A tech community of product makers in Bangalore HSR.
+            We lock in. We learn from each other. We're not for everyone.
           </p>
           <pre
             style={{
